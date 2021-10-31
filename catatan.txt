@@ -1,0 +1,19 @@
+set database pada file env
+php artisan migrate -> bentuk db
+php artisan migrate:rollback -> hapus db
+php artisan migrate:fresh -> hapus dan bentuk db baru
+
+ORM laravel
+php artisan tinker(interactive app)
+
+input data menggunakan tinker
+$model = new model
+// fill attribute
+eg. $model->name = "budi"
+$model->save()
+
+melihat semua data
+$model->all()
+
+mencari data
+$model->findOrFail(id)
