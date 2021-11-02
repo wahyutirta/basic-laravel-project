@@ -17,3 +17,6 @@ $model->all()
 
 mencari data
 $model->findOrFail(id)
+
+php artisan make:model -m NamaModel (singular model)
+-m untuk membuat file migrasi
