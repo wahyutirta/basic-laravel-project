@@ -20,3 +20,40 @@ $model->findOrFail(id)
 
 php artisan make:model -m NamaModel (singular model)
 -m untuk membuat file migrasi
+
+/Relasi Database/
+laravel dapat mengakses tabel tanpa query relasi, cukup sisipkan foreign key pada model
+//migrasi posts
+$table->id();
+$table->string('title');
+$table->foreignId('category_id');
+
+lalu terapkan relasi inverse pada model posts
+
+public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+dan relasi m to 1
+public function posts(){
+        return $this->hasMany(Post::class);
+    }
+
+model post
+ 'title'
+ 'id_category' (1, 2, 3 dst)
+
+cukup menulis $post->category maka tabel akan digabungkan oleh laravel
+
+e.g.
+
+model post
+ 'title' 	= Post Pertama
+ 'id_category' 	= 1
+
+dengan post->category 
+maka akan menjadi sbb:
+model post
+ 'title' 	= Post Pertama
+ 'id_category' 	= 1
+ 'category'	= category pertama

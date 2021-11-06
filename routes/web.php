@@ -6,6 +6,7 @@ use App\Models\Post;
 
 use App\Http\Controllers\PostController;
 
+use App\Models\Category;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,3 +36,20 @@ Route::get('/about', function () {
 Route::get('/posts', [PostController::class, 'index']);
 // param post->slug
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
+
+Route::get('/categories', function(){
+    return view('categories', [
+        'title' => 'Post Categories',
+        'categories' => Category::all(),
+    ]);
+});
+
+// load model Category kedalam variable $category berdasarkan parameter category pada url dan slug pada model 
+Route::get('/categories/{category:slug}', function (Category $category){
+    // dd($category);
+    return view('category', [
+        'title' => $category->name,
+        'posts' => $category->posts,
+        'category' => $category->name,
+    ]);
+});
